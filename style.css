@@ -1,0 +1,305 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('bg.jpg');
+    background-size: cover; 
+    background-position: center;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Containers */
+.container,
+.main-container,
+.admin-container,
+.dashboard-container {
+    width: 350px;
+    max-width: 90%; /* Responsive max-width */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Headings */
+h2 {
+    color: #4a148c;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+/* Labels */
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #4a148c;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #6a1b9a;
+    outline: none;
+}
+
+/* Buttons */
+button,
+.logout-btn,
+.admin-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: #6a1b9a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.index-container{
+    width: 550px;
+    max-width: 100%; /* Responsive max-width */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+/* Buttons Container */
+.button-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: center; /* Center buttons in the container */
+    align-items: center; /* Align buttons horizontally */
+    gap: 15px; /* Add space between buttons */
+    margin-top: 50px; /* Add spacing above the button container */
+}
+
+/* Buttons Individual Styling */
+button {
+    width: 100%; /* Make buttons take full width of the container */
+    font-size: 16px;
+    background: #6a1b9a;
+    padding: 15px 80px;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #4a148c;
+    transform: scale(1.02);
+}
+
+
+button:hover,
+.admin-button:hover,
+.logout-btn:hover {
+    background: #4a148c;
+    transform: scale(1.02);
+}
+
+.admin-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #d32f2f; /* Red color for emphasis */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: #b71c1c; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Links */
+.toggle-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #6a1b9a;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.toggle-link:hover {
+    color: #4a148c;
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.25em;
+    text-align: left;
+}
+
+/* Popup Styling */
+.popup,
+.error-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px; /* Fixed width */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.error-popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.close-popup {
+    color: #aaa;
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup:hover {
+    color: #000;
+}
+
+/* Module Styles for Dashboard */
+.dashboard-container {
+    max-width: 1500px;
+    width: 90%;
+    padding: 15px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #614ae2;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+header h1 {
+    font-size: 1.4em;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: #e94e77;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #d6396f;
+}
+
+.modules {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.module {
+    flex: 1 1 30%;
+    min-width: 200px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.module:hover {
+    transform: scale(1.03);
+}
+
+.module h2 {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.module p a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+.module p a:hover {
+    text-decoration: underline;
+}
+
+.module i {
+    font-size: 30px;
+    color: #4a90e2;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modules {
+        flex-direction: column;
+    }
+    .module {
+        flex: 1 1 100%; /* Full width on small screens */
+        margin: 5px 0; /* Adjust margins for stacking */
+    }
+}
+
+/* Media query for landscape orientation */
+@media (orientation: landscape) {
+    .modules {
+        flex-wrap: nowrap; /* Prevent wrapping in landscape */
+    }
+}
