@@ -16,12 +16,25 @@ body {
     align-items: center;
     height: 100vh;
 }
-
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #614ae2; /* Navbar background color */
+    color: white; /* Text color */
+    padding: 10px 15px; /* Padding for the navbar */
+    display: flex; /* Flexbox layout for alignment */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Full width of the viewport */
+    position: fixed; /* Fixed position to keep it at the top */
+    top: 0; /* Position it at the top */
+    z-index: 1000; /* Ensure it stays above other content */
+}
 /* Main Containers */
 .container,
 .main-container,
 .admin-container,
 .dashboard-container {
+    margin-top: 60px; /* Space for fixed navbar */
     width: 350px;
     max-width: 90%; /* Responsive max-width */
     background: rgba(255, 255, 255, 0.9);
@@ -302,4 +315,150 @@ nav a:hover {
     .modules {
         flex-wrap: nowrap; /* Prevent wrapping in landscape */
     }
+}
+/* General Reset for User Profile Page */
+.user-profile-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: transparent;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Content Container */
+.profile-wrapper {
+    background: rgba(255, 255, 255, 0.9); /* Slight white background with transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: auto; /* Automatically adjusts to content size */
+    max-width: 900px;
+    position: relative; /* Needed for absolute positioning of back button */
+}
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+    text-align: center;
+    width: 250px;
+    position: relative;
+}
+
+.profile-avatar-container {
+    display: block;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-avatar-container:hover .upload-overlay {
+    opacity: 1;
+}
+
+.profile-edit {
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.profile-edit h2 {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.profile-edit form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.profile-edit form label {
+    grid-column: 1 / span 2;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+}
+
+.profile-edit form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.8); /* Slight transparency for inputs */
+}
+
+.update-btn {
+    grid-column: 1 / span 2;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+    background-color: #e04444;
+}
+
+/* Back Button */
+.back-button {
+    position: absolute; /* Position the button absolutely */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    z-index: 10; /* Ensure it stays on top of other elements */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #6f51db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
 }
