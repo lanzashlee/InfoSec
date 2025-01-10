@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (first_name, last_name, email, password, created_at)
                 VALUES ('$first_name', '$last_name', '$email', '$password', '$created_at')";
         if ($conn->query($sql) === TRUE) {
-            $successMessage = "Sign-up successful! You can now sign in.";
+            header("Location: sign_in.php"); 
         } else {
             $emailError = "Error: " . $conn->error;
         }
