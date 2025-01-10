@@ -22,29 +22,17 @@ $user_name = $_SESSION['user_name'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header>
-            <h1>Welcome, <?php echo htmlspecialchars($user_name); ?>!</h1>
-            <nav>
-                <a href="index.php" class="btn">Log Out</a>
-            </nav>
-        </header>
+    <nav class="navbar">
+        <h1>Welcome, <?php echo htmlspecialchars($user_name); ?>!</h1>
+        <a href="index.php" class="btn">Log Out</a>
+    </nav>
 
+    <div class="dashboard-container">
         <div class="modules">
             <div class="module predictive-analytics">
                 <i class="fas fa-chart-line"></i>
                 <h2>Predictive Analytics Module</h2>
                 <p><a href="predictive_analytics.php">Access Module</a></p>
-            </div>
-            <div class="module user-system-management">
-                <i class="fas fa-user-cog"></i>
-                <h2>User and System Management Module</h2>
-                <p><a href="user_management.php">Manage Users</a></p>
-            </div>
-            <div class="module market-insight">
-                <i class="fas fa-chart-bar"></i>
-                <h2>Market Insight Module</h2>
-                <p><a href="market_insight.php">View Insights</a></p>
             </div>
             <div class="module sos-alert">
                 <i class="fas fa-exclamation-triangle"></i>
