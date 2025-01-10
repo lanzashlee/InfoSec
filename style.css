@@ -427,7 +427,7 @@ nav a:hover {
 
 .update-btn {
     grid-column: 1 / span 2;
-    background-color: #ff5c5c;
+    background-color: #ff0000;
     color: white;
     border: none;
     padding: 8px;
@@ -461,4 +461,29 @@ nav a:hover {
 
 .btn:hover {
     background-color: #0056b3;
+}
+/* Delete Button Styles */
+.delete-btn {
+    grid-column: 1 / span 2;
+    background-color: #ff1900; /* Red background for delete action */
+    color: white;              /* White text color */
+    border: none;              /* No border */
+    border-radius: 5px;       /* Rounded corners */
+    padding: 10px 15px;        /* Padding for button */
+    font-size: 16px;           /* Font size */
+    cursor: pointer;  
+    margin-top: 15px;         /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+.delete-btn:focus {
+    outline: none; /* Remove default outline on focus */
+}
+
+.delete-btn:active {
+    background-color: #a93226; /* Even darker red on active */
 }
