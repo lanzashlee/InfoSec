@@ -24,24 +24,48 @@ $user = $result->fetch_assoc();
 
 // Handle profile update submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
+    if (isset($_POST['delete_account'])) {
+        // Move the user to deleted_users table before deletion
+        $insert_sql = "INSERT INTO deleted_users (id, first_name, last_name, email, password, created_at) VALUES (?, ?, ?, ?, ?, ?)";
+        $insert_stmt = $conn->prepare($insert_sql);
+        $insert_stmt->bind_param("issssi", $user['id'], $user['first_name'], $user['last_name'], $user['email'], $user['password'], $user['created_at']);
 
-    // Update query
-    $update_sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?";
-    $update_stmt = $conn->prepare($update_sql);
-    $update_stmt->bind_param("ssssi", $first_name, $last_name, $email, $password, $user_id);
+        if ($insert_stmt->execute()) {
+            // Now delete the user from the users table
+            $delete_sql = "DELETE FROM users WHERE id = ?";
+            $delete_stmt = $conn->prepare($delete_sql);
+            $delete_stmt->bind_param("i", $user_id);
 
-    if ($update_stmt->execute()) {
-        $success_message = "Profile updated successfully!";
-        // Refresh the user data
-        $user['first_name'] = $first_name;
-        $user['last_name'] = $last_name;
-        $user['email'] = $email;
+            if ($delete_stmt->execute()) {
+                session_destroy(); // Log the user out
+                header("Location: sign_in.php?account_deleted=true"); // Redirect to sign-in page
+                exit();
+            } else {
+                $error_message = "Failed to delete account. Please try again.";
+            }
+        } else {
+            $error_message = "Failed to move account to deleted users. Please try again.";
+        }
     } else {
-        $error_message = "Failed to update profile. Try again.";
+        $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+        $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
+
+        // Update query
+        $update_sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("ssssi", $first_name, $last_name, $email, $password, $user_id);
+
+        if ($update_stmt->execute()) {
+            $success_message = "Profile updated successfully!";
+            // Refresh the user data
+            $user['first_name'] = $first_name;
+            $user['last_name'] = $last_name;
+            $user['email'] = $email;
+        } else {
+            $error_message = "Failed to update profile. Try again.";
+        }
     }
 }
 ?>
@@ -100,11 +124,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <button type="submit" class="update-btn">Update Info</button>
                 </form>
+                
+                <!-- Delete Account Form -->
+                <form method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                    <button type="submit" name="delete_account" class="delete-btn">Delete Account</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
 
 <script>
     // Handle image preview on file selection
